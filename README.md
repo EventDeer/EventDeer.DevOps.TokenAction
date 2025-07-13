@@ -7,12 +7,12 @@ The GitHub App is used to authorize API access across multiple repositories.
 
 Install the dependencies
 ```bash
-$ yarn
+$ bun i
 ```
 
 Build the typescript and package it for distribution
 ```bash
-$ yarn dist
+$ bun run dist
 ```
 
 ## Usage

@@ -12,9 +12,9 @@ inputs:
     required: false
     description: 'Scope of installation account'
     default: ''
-  authorization:
+  permissions:
     required: false
-    description: 'Specific authorization the token will provide'
+    description: 'Specific permissions to request for the token'
     default: ''
 outputs:
   token:

@@ -36,11 +36,32 @@ async function run(): Promise<void> {
       installationId = scopedData.id;
     }
 
+    const permissionsAsRecord: Record<string, string> = {};
+
+    if (core.getInput('permissions') !== '') {
+      const permissions = core.getInput('permissions').split(',');
+      for (const permission of permissions) {
+        const [name, value] = permission.split('=');
+        if (name && value) {
+          permissionsAsRecord[name.trim()] = value.trim();
+        } else {
+          throw new Error(`Invalid permission format: ${permission}`);
+        }
+      }
+    } else {
+      // Default permissions if not provided
+      permissionsAsRecord['contents'] = 'read';
+      permissionsAsRecord['checks'] = 'write';
+      permissionsAsRecord['actions'] = 'write';
+      permissionsAsRecord['administration'] = 'write';
+    }
+
     // This is untyped
     // See: https://github.com/octokit/core.js/blob/master/src/index.ts#L182-L183
     const resp = await appOctokit.auth({
       type: 'installation',
       installationId,
+      permissions: permissionsAsRecord,
     });
 
     if (!resp) {

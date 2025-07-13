@@ -4,17 +4,16 @@
   "description": "Gets a GitHub auth token for a GitHub App installation",
   "main": "lib/main.js",
   "scripts": {
-    "build": "yarn tsc",
-    "format": "yarn prettier --write **/*.ts",
-    "format-check": "yarn prettier --check **/*.ts",
-    "lint": "eslint src/**/*.ts",
-    "dist": "yarn build && yarn ncc build",
-    "test": "yarn jest --passWithNoTests",
-    "all": "yarn build && yarn format && yarn lint && yarn test && yarn dist"
+    "build": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "dist": "bun run build && ncc build",
+    "test": "jest --passWithNoTests",
+    "all": "bun run build && bun run format && bun run test && bun run dist"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:getsentry/action-github-app-token.git"
+    "url": "git@github.com:EventDeer/EventDeer.DevOps.TokenAction"
   },
   "keywords": [
     "actions",
@@ -23,19 +22,8 @@
     "github token",
     "github action"
   ],
-  "author": "Sentry",
+  "author": "EventDeer",
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "yarn eslint --fix",
-      "yarn prettier --write"
-    ]
-  },
   "prettier": {
     "bracketSpacing": false,
     "singleQuote": true
@@ -52,18 +40,12 @@
   "devDependencies": {
     "@types/jest": "^27.0.1",
     "@types/node": "^12.7.12",
-    "@typescript-eslint/parser": "^4.30.0",
     "@vercel/ncc": "^0.38.1",
-    "eslint": "^7.32.0",
-    "eslint-config-sentry": "^1.60.0",
-    "eslint-plugin-github": "^4.2.0",
-    "eslint-plugin-jest": "^24.4.0",
-    "eslint-plugin-prettier": "^3.4.1",
+    "globals": "^16.3.0",
     "husky": "^4.3.8",
     "jest": "^27.1.0",
     "jest-circus": "^27.1.0",
     "js-yaml": "^4.1.0",
-    "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.2"
