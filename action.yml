@@ -1,6 +1,9 @@
-name: 'action-github-app-token'
+name: 'ed-github-app-token'
 description: 'Gets a GitHub auth token for a GitHub App installation'
 author: 'eventdeer'
+branding:
+  icon: lock
+  color: 'green'
 inputs:
   app_id:
     required: true
